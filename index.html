@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title> HELLO WORLD </title>
+	<title> STAR WARS QUOTES </title>
 </head>
 <body>
-	<h1> May force be with you </h1>
+	<div>
+		<h1> Add new quotes </h1>
+		<form method = "POST" action = "/add-quote">
+			<input type = "text" placeholder = "Enter your name (Eg: Muralimanohar)" name = "name" />
+			<input type = "text" placeholder = "Enter some quote (Eg: May force be with you)" name = "quote" />
+			<button type = "submit"> Submit </button>
+		</form>
+	</div>
 </body>
 </html>
