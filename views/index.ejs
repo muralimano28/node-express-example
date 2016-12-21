@@ -5,11 +5,20 @@
 	<title> STAR WARS QUOTES </title>
 </head>
 <body>
+	<div class = "quotes">
+		<h1> Famous star wars quotes </h1>
+		<% for (let i = 0; i < quotes.length; i++) { %>
+		<li>
+			<span class = "name"> <%= quotes[i].name %> </span>
+			<span class = "quote"> <%= quotes[i].quote %> </span>
+		</li>
+		<% } %>
+	</div>
 	<div>
 		<h1> Add new quotes </h1>
 		<form method = "POST" action = "/add-quote">
 			<input type = "text" placeholder = "Enter your name (Eg: Muralimanohar)" name = "name" />
-			<input type = "text" placeholder = "Enter some quote (Eg: May force be with you)" name = "quote" />
+			<input type = "text" placeholder = "Enter some quote (Eg: I love JS)" name = "quote" />
 			<button type = "submit"> Submit </button>
 		</form>
 	</div>

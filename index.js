@@ -7,7 +7,7 @@ const RootPath = "/";
 const AddQuotePath = "/add-quote";
 
 // File directories
-const IndexHTML = __dirname + "/index.html";
+const IndexHTML = "index.ejs";
 
 // Create a new express app.
 const App = Express();
@@ -15,8 +15,10 @@ const App = Express();
 // Middlewares
 App.use(BodyParser.urlencoded({ extended: true }));
 
+App.set('view engine', 'ejs');
+
 // Connect to database.
-MongoClient.connect("mongodb://127.0.0.1:27017/starwarsQuotesDB", (err, db) => {
+MongoClient.connect('mongodb://127.0.0.1:27017/starwarsQuotesDB', (err, db) => {
 	if (err) return console.log(err);
 
 	console.log("Connected to db");
@@ -30,17 +32,15 @@ MongoClient.connect("mongodb://127.0.0.1:27017/starwarsQuotesDB", (err, db) => {
 		db.collection("quotes").find().toArray((err, result) => {
 			if (err) return console.log("err: ", err);
 
-			console.log(result);
+			res.render(IndexHTML, { quotes: result });
 		});
 
-		res.sendFile(IndexHTML);
 	});
 
 	App.post(AddQuotePath, (req, res) => {
 		db.collection("quotes").save(req.body, (err, result) => {
 			if (err) return console.log("err: ",err);
 
-			console.log(result);
 			console.log("Saved to database");
 			res.redirect(RootPath);
 		});
